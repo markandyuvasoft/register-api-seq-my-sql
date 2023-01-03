@@ -7,16 +7,18 @@ const checkAuth = require('../middleware/check-auth.js')
 
 const User = db.users
 
+
+// register api....
 const addUser = async (req,res) =>{
 
 User.findOne({where:{email:req.body.email}}).then(result => {
+
 
     if(User.result === null){
         res.status(401).json({
             message: "Invalid credentials!",
         });
     }
-
      else if(result){
         res.status(409).json({
             message: "Email already exists!",
@@ -51,7 +53,7 @@ User.findOne({where:{email:req.body.email}}).then(result => {
 
 }
 
-
+// login api.....
 const addUserLogin = async (req,res) =>{
     User.findOne({where:{email: req.body.email}}).then(user => {
         if(user === null){
