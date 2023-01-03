@@ -1,6 +1,8 @@
 
 const {schema,user}= require('../validation/auth-Schema.js')
 
+
+
 const adduservali=async(req,res,next) =>{
 
     const value= await schema.user.validate(req.body)

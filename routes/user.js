@@ -14,6 +14,18 @@ router.post('/api/register',adduservali.adduservali  ,userController.addUser)
 
 router.post('/api/login', userController.addUserLogin)
 
+router.get('/api/getUsers', userController.getAllUsers)
+
+router.get('/api/getUser/:id', userController.getOneUser)
+
+router.delete('/api/deleteUser/:id', userController.deleteUser)
+
+router.put('/api/updateUser/:id', userController.updateUser)
+
+
+
+
+
 
 
 // product router.....

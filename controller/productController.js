@@ -69,7 +69,7 @@ const getOneProduct =  async (req,res) =>{
             res.status(400).send({message:"no data found"})
         }
     } catch (error) {
-        res.status(200).send("no data found")
+        res.status(200).send("something wrong....")
     }
 
 }
@@ -77,22 +77,47 @@ const getOneProduct =  async (req,res) =>{
 // 4. update product
 const updateProduct =  async (req,res) =>{
 
-    let id = req.params.id
+    try {
 
-    let product = await Product.update(req.body, { where: { id:id }})
+        let id = req.params.id
 
-    res.status(200).send(product)
+        let product = await Product.update(req.body, { where: { id:id }})
+    
+        res.status(200).send(product)
+        
+    } catch (error) {
+        res.status(200).send("something wrong....")
+    }
+
+
 }
 
 
 // 5. delete product
 const deleteProduct =  async (req,res) =>{
 
-    let id = req.params.id
+    try {
+        let id = req.params.id
+        
+        let data = await Product.findOne({ where: { id:id }})
 
-    let product = await Product.destroy({ where: { id:id }})
+        if(data){
 
-    res.status(200).send({message:'product is deleted'})
+            let product = await Product.destroy({ where: { id:id }})
+        
+            res.status(200).send({message:'product is deleted'})
+        }else{
+            res.status(200).send({message:'product not found'})
+
+        }
+    
+
+    } catch (error) {
+
+        res.status(200).send("something wrong....")
+    }
+
+
 }
 
 
